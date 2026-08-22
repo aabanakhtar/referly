@@ -1,6 +1,9 @@
+import { useState, type SubmitEvent } from "react";
 import api from "../API.tsx"
 
 export default function Signup() {
+  const [status, setStatus] = useState<string>("Creating account");
+
 
   // see login form for impl details
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
@@ -14,17 +17,20 @@ export default function Signup() {
 
     if (pwd_1 !== pwd_2) {
       // tell the user something wrong;
-
+      setStatus("Passwords do not match.")
       return;
     }
 
     try {
-      const response = await api.post("/auth/signup", {
+      const response = await api.post("/auth/create", {
         'email': username, 
         'pwd': pwd_1
       });
-    } catch (error: any) {
 
+      console.log(response.data);
+      setStatus(`User ${response.data.email} created`);
+    } catch (error: any) {
+      setStatus(`Couldn't create user or user already exists!`);
     }
 
   };
@@ -32,9 +38,9 @@ export default function Signup() {
   return (
     <div className="container">
       <h3>Create Account:</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input 
-          type="text"
+          type="email"
           name="login"
           placeholder="Enter email"
           aria-label="Login" // screen reader stuff
@@ -57,6 +63,7 @@ export default function Signup() {
           autoComplete="current-password"
           required
         />
+        <p>{status}</p>
         <button type="submit">Sign Up</button>
       </form>
     </div>

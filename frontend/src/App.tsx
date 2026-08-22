@@ -8,7 +8,7 @@ import Login from "./pages/Login"
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import { ProtectedRoute } from "./API";
+import { LockedRoute, ProtectedRoute } from "./API";
 
 
 function NavHeader() {
@@ -46,7 +46,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login/>} />
+        {/* Locked route for sign in cause like how you gonna sign in if u already in type */}
+        <Route path="/login" element={<LockedRoute isAuth={isAuth} defaultPage="/dash" />}> 
+          <Route path="/login" element={<Login/>} />
+        </Route>
         <Route element={<ProtectedRoute isAuth={isAuth} />}>
           <Route path="/dash" element={<Dashboard />} /> 
         </Route>

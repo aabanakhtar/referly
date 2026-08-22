@@ -4,6 +4,17 @@ from datetime import datetime
 from pydantic import EmailStr
 import uuid
 
+class BragProfile(SQLModel): 
+    __tablename__ = "brag_profiles"
+    id: int | None = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="users.id", unique=True, index=True)
+
+    # we have to find a way to make this more freeform, maybe make the user define their own questions?
+    bio: str | None = Field(default=None)
+    proudest_achievement: str | None = Field(default=None)
+    leadership_example: str | None = Field(default=None)
+    challenge_overcome: str | None = Field(default=None)
+
 class RecommendationType(str, Enum): 
     job = "work"
     academic = "academic"
@@ -20,6 +31,7 @@ class RecommendationRequestBase(SQLModel):
     purpose: RecommendationType 
     recommender_name: str 
     recommender_email: EmailStr 
+    field_questions: str
 
 
 class RecommendationRequest(RecommendationRequestBase, table=True): 
@@ -41,6 +53,8 @@ class RecommendationRequest(RecommendationRequestBase, table=True):
     # recommender details 
     recommender_name: str = Field() 
     recommender_email: str = Field()
+    # specific to the recommendation type
+    field_questions: str = Field()
 
     access_token: str = Field(default_factory=lambda: uuid.uuid4().hex, unique=True)
     # auto generate the time of the request

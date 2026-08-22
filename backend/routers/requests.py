@@ -26,7 +26,7 @@ def create_request(request: RecommendationRequestBase, db: db.SessionDep, curren
     db.refresh(new_request)
 
 @router.get("/")
-def get_request_list(db: db.SessionDep, current_user: Annotated[User, Depends(get_current_user)]) -> list[RecommendationRequestBase]:
+def get_request_list(db: db.SessionDep, current_user: Annotated[User, Depends(get_current_user)]) -> list[RecommendationRequest]:
     '''Gets the list of recommendation requests the user has made'''
     request_list = db.exec(select(RecommendationRequest).
                            where(RecommendationRequest.user_id == current_user.id)).all()

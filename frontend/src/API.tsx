@@ -22,7 +22,15 @@ export function ProtectedRoute({isAuth}: {isAuth: ()=>boolean}) {
   if (isAuth()) {
     return <Outlet />;
   } else {
-    return <Navigate to="/login" />
+    return <Navigate to="/login" />;
+  }
+}
+// protects certain pages from showing up if authed (like sign up)
+export function LockedRoute({isAuth, defaultPage}: {isAuth: ()=>boolean, defaultPage: string}) {
+  if (isAuth()) {
+    return <Navigate to={defaultPage} />;
+  } else {
+    return <Outlet/>;
   }
 }
 

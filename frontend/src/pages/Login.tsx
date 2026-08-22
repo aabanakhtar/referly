@@ -51,7 +51,7 @@ export default function LoginPage() {
       <h3>Login:</h3>
       <form onSubmit={handleSubmit}>
         <input 
-          type="text"
+          type="email"
           name="login"
           placeholder="Enter email"
           aria-label="Login" // screen reader stuff
