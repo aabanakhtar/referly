@@ -14,7 +14,8 @@ from models.users import (
 from routers import (
     auth, 
     users,
-    requests
+    requests, 
+    profile
 )
 
 
@@ -42,7 +43,7 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(requests.router)
-
+app.include_router(profile.router)
 
 @app.get("/health")
 def root():
