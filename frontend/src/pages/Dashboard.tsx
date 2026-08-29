@@ -1,3 +1,5 @@
+import UpdateBragProfile from "./subcomponents/Profile"
+
 function Dashboard() {
     let userName: string = sessionStorage.getItem("name");
     if (!userName) {
@@ -7,8 +9,10 @@ function Dashboard() {
     return (
         <div className="container">
             <h1>Welcome, {userName}!</h1>
-        </div> 
-    )
+            <p>Check your past recommendations, update your bio, and more, below.</p>
+            <UpdateBragProfile />
+        </div>
+    );
 }
 
 export default Dashboard;

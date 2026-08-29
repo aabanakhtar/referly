@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Response
 from routers.auth import get_current_user
 from routers.users import User
 
@@ -45,6 +45,6 @@ def get_brag_profile(db: db.SessionDep,
     '''Gets the profile if it exists'''
     user_profile = db.exec(select(BragProfile).where(BragProfile.user_id == current_user.id)).first()
     if not user_profile: 
-        raise HTTPException(404, "User doesn't have brag profile")
+        return Response(status_code=204)
 
     return user_profile
