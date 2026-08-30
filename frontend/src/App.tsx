@@ -21,6 +21,7 @@ function NavHeader() {
           <li><Link to="/"><h2><img className="logo" src="public/logo.png" /></h2></Link></li>
         </ul>
         <ul>
+          <li><Link to="/dash">Dashboard</Link></li>
           <li><Link to="/">Recommender Login</Link></li>
           <li><Link to="/signup">Sign Up</Link></li> 
           <li><Link to="/login">Log in</Link></li>
