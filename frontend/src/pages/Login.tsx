@@ -40,6 +40,7 @@ export default function LoginPage() {
       // go to dashboard
       navigate("/dash")
     } catch (error: any) {
+      // TODO: show the user the error
       console.error(error.response?.data)
     }
     
@@ -48,29 +49,31 @@ export default function LoginPage() {
 
   return (
     <div className="container">
-      <h3>Login:</h3>
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="email"
-          name="login"
-          placeholder="Enter email"
-          aria-label="Login" // screen reader stuff
-          autoComplete="username" // enables browser suggestions
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          aria-label="Password"
-          autoComplete="current-password"
-          required
-        />
-        <p>New? <Link to="/signup">Create an account</Link></p>
-        <button type="submit">
-          Login
-        </button>
-      </form>
+      <article>
+        <h3>Login:</h3>
+        <form onSubmit={handleSubmit}>
+          <input 
+            type="email"
+            name="login"
+            placeholder="Enter email"
+            aria-label="Login" // screen reader stuff
+            autoComplete="username" // enables browser suggestions
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            aria-label="Password"
+            autoComplete="current-password"
+            required
+          />
+          <p>New? <Link to="/signup">Create an account</Link></p>
+          <button type="submit">
+            Login
+          </button>
+        </form>
+      </article>
     </div>
   ) 
 }
