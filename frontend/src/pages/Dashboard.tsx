@@ -51,9 +51,12 @@ function UpdateBragProfileCard() {
 }
 
 function CreateNewRequest() {
+  const navigate = useNavigate();
+
   return (
     <div>
-      <button type="submit" className="outline contrast" style={{height: "10rem"}}>
+      <button type="submit" className="outline contrast" style={{height: "10rem"}}
+        onClick={() => {navigate("/create_request");}}>
         + Create New
       </button>
     </div>

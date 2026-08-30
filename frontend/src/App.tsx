@@ -10,6 +10,7 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import { LockedRoute, ProtectedRoute } from "./API";
 import EditBragProfileForm from "./pages/EditBragProfileForm";
+import CreateRecommendationRequest from "./pages/CreateRecommendationRequest";
 
 
 function NavHeader() {
@@ -54,6 +55,7 @@ function App() {
         <Route element={<ProtectedRoute isAuth={isAuth} />}>
           <Route path="/dash" element={<Dashboard />} /> 
           <Route path="/edit_profile" element={<EditBragProfileForm />} /> 
+          <Route path="/create_request" element={<CreateRecommendationRequest />} />
         </Route>
       </Routes>
     </div>
